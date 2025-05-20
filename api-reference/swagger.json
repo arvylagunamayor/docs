@@ -6,7 +6,7 @@
     "version": "2.0"
   },
   "paths": {
-    "/api/v2/external/link-account": {
+    "/api/v1/external/link-account": {
       "post": {
         "summary": "Link External Account",
         "description": "Links an external user account to the ABS system. This endpoint is used to establish a connection between an external user and their ABS account.",
@@ -135,7 +135,7 @@
         }
       }
     },
-    "/api/v2/external/unlink-account": {
+    "/api/v1/external/unlink-account": {
       "post": {
         "summary": "Unlink External Account",
         "description": "Unlinks an external user account from the ABS system. This endpoint is used to remove the connection between an external user and their ABS account.",
@@ -264,7 +264,7 @@
         }
       }
     },
-    "/api/v2/external/application": {
+    "/api/v1/external/application": {
       "post": {
         "summary": "Add New Application",
         "description": "Adds a new application to the ABS system. This endpoint is used to create a new application in the ABS system.",
@@ -393,7 +393,7 @@
         }
       }
     },
-    "/api/v2/external/application/agency/{sourceAgencyCode}": {
+    "/api/v1/external/application/agency/{sourceAgencyCode}": {
       "get": {
         "summary": "Get Application List",
         "description": "Retrieves a list of applications for a specific agency. This endpoint is used to retrieve a list of applications associated with a particular agency.",
@@ -537,7 +537,7 @@
         }
       }
     },
-    "/api/v2/external/application/{cnaApplicationUniqueNo}/agency/{sourceAgencyCode}": {
+    "/api/v1/external/application/{cnaApplicationUniqueNo}/agency/{sourceAgencyCode}": {
       "get": {
         "summary": "Get Application Details",
         "description": "Retrieves detailed information about a specific application. This endpoint is used to retrieve detailed information about a particular application.",
@@ -677,7 +677,7 @@
         }
       }
     },
-    "/api/v2/external/application/permit/{cnaApplicationUniqueNo}": {
+    "/api/v1/external/application/permit/{cnaApplicationUniqueNo}": {
       "post": {
         "summary": "Add Permit",
         "description": "Adds a permit to an application. This endpoint is used to add a permit to an existing application.",
