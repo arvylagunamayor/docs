@@ -5,6 +5,11 @@
     "description": "Philippines ABS Webservice.",
     "version": "2.0"
   },
+  "servers": [
+    {
+      "url": "https://api.absch.info"
+    }
+  ],
   "paths": {
     "/api/v1/external/link-account": {
       "post": {
