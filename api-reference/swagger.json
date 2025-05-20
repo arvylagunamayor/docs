@@ -1,0 +1,1773 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Philippines ABS API",
+    "description": "Philippines ABS Webservice.",
+    "version": "2.0"
+  },
+  "paths": {
+    "/api/v2/external/link-account": {
+      "post": {
+        "summary": "Link External Account",
+        "description": "Links an external user account to the ABS system. This endpoint is used to establish a connection between an external user and their ABS account.",
+        "tags": [
+          "ABS User Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkAccountCommandRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkAccountCommandRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkAccountCommandRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkAccountCommandRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "https://httpstatuses.io/403"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Forbidden"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 403
+                    },
+                    "traceId": {
+                      "type": "string",
+                      "example": "00-3c60533aac588045e03a162149b6f9cd-9a538e116b6afc71-00"
+                    }
+                  },
+                  "required": ["type", "title", "status", "traceId"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v2/external/unlink-account": {
+      "post": {
+        "summary": "Unlink External Account",
+        "description": "Unlinks an external user account from the ABS system. This endpoint is used to remove the connection between an external user and their ABS account.",
+        "tags": [
+          "ABS User Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnlinkAccountCommandRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnlinkAccountCommandRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnlinkAccountCommandRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnlinkAccountCommandRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "https://httpstatuses.io/403"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Forbidden"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 403
+                    },
+                    "traceId": {
+                      "type": "string",
+                      "example": "00-3c60533aac588045e03a162149b6f9cd-9a538e116b6afc71-00"
+                    }
+                  },
+                  "required": ["type", "title", "status", "traceId"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v2/external/application": {
+      "post": {
+        "summary": "Add New Application",
+        "description": "Adds a new application to the ABS system. This endpoint is used to create a new application in the ABS system.",
+        "tags": [
+          "ABS User Applications"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewApplicationCommandRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewApplicationCommandRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewApplicationCommandRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewApplicationCommandRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "https://httpstatuses.io/403"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Forbidden"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 403
+                    },
+                    "traceId": {
+                      "type": "string",
+                      "example": "00-3c60533aac588045e03a162149b6f9cd-9a538e116b6afc71-00"
+                    }
+                  },
+                  "required": ["type", "title", "status", "traceId"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/api/v2/external/application/agency/{sourceAgencyCode}": {
+      "get": {
+        "summary": "Get Application List",
+        "description": "Retrieves a list of applications for a specific agency. This endpoint is used to retrieve a list of applications associated with a particular agency.",
+        "tags": [
+          "ABS User Applications"
+        ],
+        "parameters": [
+          {
+            "name": "sourceAgencyCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "https://httpstatuses.io/403"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Forbidden"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 403
+                    },
+                    "traceId": {
+                      "type": "string",
+                      "example": "00-3c60533aac588045e03a162149b6f9cd-9a538e116b6afc71-00"
+                    }
+                  },
+                  "required": ["type", "title", "status", "traceId"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetCNAApplicationListQueryVM"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetCNAApplicationListQueryVM"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetCNAApplicationListQueryVM"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/api/v2/external/application/{cnaApplicationUniqueNo}/agency/{sourceAgencyCode}": {
+      "get": {
+        "summary": "Get Application Details",
+        "description": "Retrieves detailed information about a specific application. This endpoint is used to retrieve detailed information about a particular application.",
+        "tags": [
+          "ABS User Applications"
+        ],
+        "parameters": [
+          {
+            "name": "cnaApplicationUniqueNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sourceAgencyCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "https://httpstatuses.io/403"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Forbidden"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 403
+                    },
+                    "traceId": {
+                      "type": "string",
+                      "example": "00-3c60533aac588045e03a162149b6f9cd-9a538e116b6afc71-00"
+                    }
+                  },
+                  "required": ["type", "title", "status", "traceId"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetNewApplicationQueryVM"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetNewApplicationQueryVM"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetNewApplicationQueryVM"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/external/application/permit/{cnaApplicationUniqueNo}": {
+      "post": {
+        "summary": "Add Permit",
+        "description": "Adds a permit to an application. This endpoint is used to add a permit to an existing application.",
+        "tags": [
+          "ABS User Applications"
+        ],
+        "parameters": [
+          {
+            "name": "cnaApplicationUniqueNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "AbsLinkCode": {
+                    "type": "string"
+                  },
+                  "SourceAgencyCode": {
+                    "type": "string"
+                  },
+                  "PermitNo": {
+                    "type": "string"
+                  },
+                  "Title": {
+                    "type": "string"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "DateIssued": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "DateExpired": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "PermitFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "AbsLinkCode": {
+                  "style": "form"
+                },
+                "SourceAgencyCode": {
+                  "style": "form"
+                },
+                "PermitNo": {
+                  "style": "form"
+                },
+                "Title": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "DateIssued": {
+                  "style": "form"
+                },
+                "DateExpired": {
+                  "style": "form"
+                },
+                "PermitFile": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "https://httpstatuses.io/403"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Forbidden"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 403
+                    },
+                    "traceId": {
+                      "type": "string",
+                      "example": "00-3c60533aac588045e03a162149b6f9cd-9a538e116b6afc71-00"
+                    }
+                  },
+                  "required": ["type", "title", "status", "traceId"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddNewApplicationCommandLocationRequest": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "nullable": true
+          },
+          "province": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityOrMunicipality": {
+            "type": "string",
+            "nullable": true
+          },
+          "barangay": {
+            "type": "string",
+            "nullable": true
+          },
+          "collectionStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "collectionEnd": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "species": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddNewApplicationCommandSpeciesRequest"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddNewApplicationCommandRequest": {
+        "type": "object",
+        "properties": {
+          "absLinkCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceAgencyCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceAgencyApplicationNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "ecosystem": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "permitType": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteeFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteeLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteeMiddleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteeEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteePhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteeAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteeDateOfBirth": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "permiteeAffiliation": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteeGender": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteeOccupation": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteeEmployer": {
+            "type": "string",
+            "nullable": true
+          },
+          "permiteeEmployerAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddNewApplicationCommandLocationRequest"
+            },
+            "nullable": true
+          },
+          "additionalNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "purpose": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddNewApplicationCommandSpeciesRequest": {
+        "type": "object",
+        "properties": {
+          "commonName": {
+            "type": "string",
+            "nullable": true
+          },
+          "scientificName": {
+            "type": "string",
+            "nullable": true
+          },
+          "geneticName": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCNAApplicationListAttachmentsQueryVM": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "fileExtension": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCNAApplicationListLocationsQueryVM": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "region": {
+            "type": "string",
+            "nullable": true
+          },
+          "province": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityMunicipality": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "barangay": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCNAApplicationListNoticesQueryVM": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "log": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "authorId": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCNAApplicationListQueryVM": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "registrationNo": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "applicantId": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "applicationType": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "affiliation": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "phoneNo": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "floorUnitNo": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "collaborator": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "collaboratorType": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "ecosystem": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "cbdStatus": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "permitType": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceUniqueNo": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "sourceAgencyCode": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetCNAApplicationListLocationsQueryVM"
+            },
+            "nullable": true
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetCNAApplicationListResourcesQueryVM"
+            },
+            "nullable": true
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetCNAApplicationListAttachmentsQueryVM"
+            },
+            "nullable": true
+          },
+          "notices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetCNAApplicationListNoticesQueryVM"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCNAApplicationListResourcesQueryVM": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "commonName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "geneticName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "scientificName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetNewApplicationAttachmentsQueryVM": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "fileExtension": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetNewApplicationGPQueryVM": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "permitNo": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateIssued": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "dateExpired": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "dateRenewed": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "fileName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "fileExtension": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "createdBy": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "fileUploadedBy": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetNewApplicationLocationsQueryVM": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "region": {
+            "type": "string",
+            "nullable": true
+          },
+          "province": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityMunicipality": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "barangay": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetNewApplicationMOAQueryVM": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "fileExtension": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "createdBy": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "fileUploadedBy": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetNewApplicationNoticesQueryVM": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "log": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "authorId": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetNewApplicationQueryVM": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "registrationNo": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "applicantId": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "applicationType": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "affiliation": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "phoneNo": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "floorUnitNo": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "collaborator": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "collaboratorType": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "ecosystem": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "purpose": {
+            "type": "string",
+            "nullable": true
+          },
+          "permitType": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetNewApplicationLocationsQueryVM"
+            },
+            "nullable": true
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetNewApplicationResourcesQueryVM"
+            },
+            "nullable": true
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetNewApplicationAttachmentsQueryVM"
+            },
+            "nullable": true
+          },
+          "notices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetNewApplicationNoticesQueryVM"
+            },
+            "nullable": true
+          },
+          "gp": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetNewApplicationGPQueryVM"
+            },
+            "nullable": true
+          },
+          "moa": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetNewApplicationMOAQueryVM"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetNewApplicationResourcesQueryVM": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "commonName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "geneticName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "scientificName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "collectionStart": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "collectionEnd": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LinkAccountCommandRequest": {
+        "type": "object",
+        "properties": {
+          "absLinkCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceAgencyCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicantFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicantMiddleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicantLastName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "A URI reference that identifies the problem type",
+            "example": "https://httpstatuses.io/401"
+          },
+          "title": {
+            "type": "string",
+            "description": "A short, human-readable summary of the problem type",
+            "example": "Unauthorized"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The HTTP status code",
+            "example": 401
+          },
+          "traceId": {
+            "type": "string",
+            "description": "Unique identifier for the request trace",
+            "example": "00-ccc5b50f398a9aa326376cae4c94f0aa-02446e117618e206-00"
+          }
+        },
+        "required": ["type", "title", "status", "traceId"],
+        "additionalProperties": false
+      },
+      "UnlinkAccountCommandRequest": {
+        "type": "object",
+        "properties": {
+          "absLinkCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceAgencyCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Please insert JWT with Bearer into field",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

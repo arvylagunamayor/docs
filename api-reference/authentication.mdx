@@ -1,0 +1,65 @@
+---
+title: 'Authentication'
+description: 'Authentication guide for the ABS API'
+---
+
+# Authentication
+
+The API uses OAuth 2.0 with JWT tokens for authentication. All API requests must include a valid access token in the Authorization header.
+
+## Obtaining Access Token
+
+To obtain an access token, make a POST request to the IAM authentication endpoint:
+
+```http
+POST {IAM_HOST}/realms/absch/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&client_id=your_client_id&client_secret=your_client_secret
+```
+
+### Request Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| grant_type | string | Yes | Must be set to "client_credentials" |
+| client_id | string | Yes | Your client ID provided during registration |
+| client_secret | string | Yes | Your client secret provided during registration |
+
+### Response
+
+```json
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "expires_in": 300,
+    "refresh_expires_in": 1800,
+    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "token_type": "bearer",
+    "not-before-policy": 0,
+    "session_state": "your-session-state",
+    "scope": "openid email profile"
+}
+```
+
+## Using the Access Token
+
+Include the access token in the Authorization header of all API requests:
+
+```http
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+> **Note:** The access token expires after 5 minutes (300 seconds). You should implement token refresh logic to obtain a new token before expiration.
+
+## Token Expiration
+
+- Access tokens expire after 5 minutes (300 seconds)
+- Refresh tokens expire after 30 minutes (1800 seconds)
+- Make sure to implement token refresh logic in your application
+
+## Security Considerations
+
+- Keep your client credentials secure and never expose them in client-side code
+- Store tokens securely and never share them
+- Implement proper token refresh logic to handle token expiration
+- Use HTTPS for all API requests 

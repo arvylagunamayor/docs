@@ -1,33 +1,232 @@
 ---
 title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+description: 'Comprehensive documentation for the ABS API'
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+Version: 1.0.0  
+Last Updated: 03-12-2025  
+API Base URL: `https://api.absch.info`  
+IAM Authentication URL: `{IAM_HOST}/realms/absch`
 
-## Welcome
+## Table of Contents
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+1. [Introduction](#introduction)
+   - [API Versioning](#api-versioning)
+   - [Content Types](#content-types)
+2. [Authentication](/api-reference/authentication)
+   - [Obtaining Access Token](/api-reference/authentication#obtaining-access-token)
+   - [Using the Access Token](/api-reference/authentication#using-the-access-token)
+3. [Error Handling](#error-handling)
+   - [HTTP Status Codes](#http-status-codes)
+   - [Error Response Format](#error-response-format)
+4. [Rate Limiting](#rate-limiting)
+5. [File Upload Guidelines](#file-upload-guidelines)
+6. [Security Best Practices](#security-best-practices)
+7. [API Endpoints](#api-endpoints)
+   - [Link Account](#link-account)
+   - [Unlink Account](#unlink-account)
+   - [Add New Application](#add-new-application)
+   - [Get Application](#get-application)
+   - [Upload Permit](#upload-permit)
+8. [Support](#support)
+9. [Changelog](#changelog)
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+## Introduction
 
-## Authentication
+This documentation provides detailed information about the authentication process and API endpoints. The API uses REST architecture and returns responses in JSON format.
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+> **Note:** ABS refers to Access & Benefit Sharing Clearing House, which is the system that manages and tracks access to genetic resources and the sharing of benefits from their use.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+### API Versioning
+
+The current API version is v1.0.0. The version is included in the API URL:
 ```
+https://api.example.com/v1/
+```
+
+### Content Types
+
+The API supports multiple content types depending on the endpoint:
+
+1. **JSON Data (Default)**
+```http
+Content-Type: application/json
+Accept: application/json
+```
+Used for most API endpoints that send and receive JSON data.
+
+2. **Form URL Encoded**
+```http
+Content-Type: application/x-www-form-urlencoded
+```
+Used specifically for authentication endpoints.
+
+3. **Multipart Form Data**
+```http
+Content-Type: multipart/form-data
+```
+Used for file upload endpoints (e.g., Upload Permit endpoint).
+
+Each endpoint's documentation specifies the required Content-Type header.
+
+## Error Handling
+
+The API uses standard HTTP response codes and returns consistent error objects.
+
+### HTTP Status Codes
+
+| Status Code | Description |
+|-------------|-------------|
+| 200 | Success |
+| 400 | Bad Request - See [Common Error Responses](#common-error-responses) |
+| 401 | Unauthorized - See [Common Error Responses](#common-error-responses) |
+| 403 | Forbidden - See [Common Error Responses](#common-error-responses) |
+| 404 | Not Found - See [Common Error Responses](#common-error-responses) |
+| 500 | Internal Server Error |
+
+## Common Error Responses
+
+All API endpoints may return the following error responses:
+
+### 400 Bad Request
+```json
+{
+  "type": "https://httpstatuses.com/400",
+  "title": "Invalid command error",
+  "status": 400,
+  "detail": ["Detailed error message"],
+  "instance": null,
+  "extensions": {
+    "traceId": "00-798154166236981871ba3ac65fae0cfa-cc74cee507ffb0c7-00"
+  }
+}
+```
+
+### 401 Unauthorized
+```json
+{
+  "type": "https://httpstatuses.com/401",
+  "title": "Unauthorized",
+  "status": 401,
+  "detail": "Invalid or missing authentication token",
+  "instance": null,
+  "extensions": {
+    "traceId": "00-798154166236981871ba3ac65fae0cfa-cc74cee507ffb0c7-00"
+  }
+}
+```
+
+### 403 Forbidden
+```json
+{
+  "type": "https://httpstatuses.com/403",
+  "title": "Forbidden",
+  "status": 403,
+  "detail": "Insufficient permissions to perform the requested action",
+  "instance": null,
+  "extensions": {
+    "traceId": "00-798154166236981871ba3ac65fae0cfa-cc74cee507ffb0c7-00"
+  }
+}
+```
+
+### 404 Not Found
+```json
+{
+  "type": "https://httpstatuses.com/404",
+  "title": "Resource not found error",
+  "status": 404,
+  "detail": "The requested resource was not found",
+  "instance": null,
+  "extensions": {
+    "traceId": "00-231f31bee3eafc77fedba4beba6ee644-181275d8a1dabb78-00"
+  }
+}
+```
+
+### 409 Conflict
+```json
+{
+  "type": "https://httpstatuses.com/409",
+  "title": "Business rule validation error",
+  "status": 409,
+  "detail": "Business rule validation failed]",
+  "instance": null,
+  "extensions": {
+    "traceId": "00-0a4fb65c30cf063da26cdf58c0b907c2-87a2fc3d84f955d1-00"
+  }
+}
+```
+
+## File Upload Guidelines
+
+When uploading files through the API (e.g., permit documents), please follow these guidelines:
+
+### Supported File Formats
+- PDF documents (*.pdf)
+- Image files (*.jpg, *.jpeg, *.png)
+- Maximum file size: 10MB
+
+### File Upload Best Practices
+1. **File Names**
+   - Use only alphanumeric characters, hyphens, and underscores
+   - Avoid spaces and special characters
+   - Maximum filename length: 255 characters
+
+2. **File Content**
+   - Ensure files are not password protected
+   - Files must be readable and not corrupted
+   - Content must be clearly legible
+
+3. **Security**
+   - Scan files for viruses before uploading
+   - Do not upload executable files
+   - Ensure files don't contain sensitive metadata
+
+### Error Handling for File Uploads
+- If a file exceeds size limits, a 413 Payload Too Large response will be returned
+- Invalid file formats will result in a 400 Bad Request
+- Corrupted files will be rejected with appropriate error messages
+
+## Security Best Practices
+
+1. **SSL/TLS**: Always use HTTPS for API communications
+2. **Token Storage**: 
+   - Store tokens securely
+   - Never expose in client-side code
+   - Never log tokens or credentials
+3. **Token Management**:
+   - Cache tokens until expiration
+   - Implement automatic token refresh
+   - Handle token expiration gracefully
+4. **Error Handling**:
+   - Implement proper error handling
+   - Log authentication failures
+   - Monitor for suspicious activity
+
+## Support
+
+For API support or questions, contact:
+- Email: absdenrphilippines@gmail.com
+- Developer Portal: -
+- Status Page: -
+
+## Changelog
+
+### Version 1.0.0 (2025-03-12)
+
+#### Authentication & Security
+- Implemented OAuth 2.0 authentication with JWT tokens
+- Added comprehensive security best practices
+- Implemented rate limiting (100 requests per minute)
+
+#### Documentation
+- Initial comprehensive API documentation
+- Added detailed error handling documentation
+- Added file upload guidelines and best practices
+
+#### Developer Experience
+- Added clear examples for all endpoints
+- Included comprehensive request/response examples
+- Added detailed parameter descriptions
+- Implemented consistent error response format
